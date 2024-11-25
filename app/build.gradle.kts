@@ -6,19 +6,31 @@ plugins {
 
 android {
     namespace = "com.example.cryptoapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.cryptoapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "paid_status"
+    productFlavors {
+        // paid dimensions
+        create("free") {
+            applicationIdSuffix = ".free"
+            dimension = "paid_status"
+        }
+    }
+
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
